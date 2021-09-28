@@ -9,22 +9,61 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Problem 1
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Creating a dataframe containing a random sample of size 10 from normal distribution, logical vector for whether the elements of the sample are >0, character vector of length 10, and factor vector (3-level) with length 10.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r, message = FALSE}
+library(tidyverse)
 ```
 
-## Including Plots
+```{r}
+set.seed(4321)
 
-You can also embed plots, for example:
+hw1_p1_df = tibble(
+  rand_samp = rnorm(10, sd = 1),
+  vec_logical = rand_samp > 0,
+  vec_char = c("This", "is", "hw", "1", "for", "BIST", "P8105", "fall", "2021", "semester"),
+  vec_factor3 = factor(c("blue", "green", "blue", "red", "blue", "green", "green", "green", "red", "red"))
+)
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+hw1_p1_df
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Attempting to take the mean of each variable.
+
+What works?
+
+What doesn't?
+
+```{r}
+
+```
+
+Applying the as.numeric function to the logical, character, and factor variables to convert to numeric data type.
+
+NOT showing the results of this output.
+
+What happens, and why? Does this help explain what happens when you try to take the mean?
+
+```{r}
+#results = hide?
+```
+
+## Problem 2
+
+The palmerpenguins data was installed in the console only.
+
+Now loading the penguins dataset:
+
+```{r }
+data("penguins", package = "palmerpenguins")
+
+
+
+```
+
+The penguins dataset contains ...
+
+The mean flipper length is `r mean(pull(penguins, flipper_length_mm))` mm.

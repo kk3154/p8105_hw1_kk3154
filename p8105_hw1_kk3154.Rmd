@@ -16,7 +16,6 @@ Creating a dataframe containing a random sample of size 10 from a normal distrib
 ```{r, message = FALSE}
 library(tidyverse)
 ```
-
 ```{r}
 set.seed(4321)
 
@@ -36,7 +35,6 @@ mean(pull(hw1_p1_df, vec_logical))
 mean(pull(hw1_p1_df, vec_char))
 mean(pull(hw1_p1_df, vec_factor3))
 ```
-
 It is possible to take the mean of the variable containing the random sample and the logical vector.
 
 It is not possible to take the mean of the character vector or the factor vector - it returns an error message that the argument is not numeric or logical and returns an "NA" result. 
@@ -62,17 +60,25 @@ It is still not possible to take the mean of the character vector because not al
 
 ## Problem 2
 
-The palmerpenguins data was installed in the console only.
+The palmerpenguins data was installed in the console only using the following provided code: ```install.packages("palmerpenguins")```
 
-Now loading the penguins dataset:
+Loading the penguins dataset:
 
 ```{r }
 data("penguins", package = "palmerpenguins")
-
-
-
 ```
 
-The penguins dataset contains ...
+The penguins dataset contains `r ncol(penguins)` variables describing `r nrow(penguins)` observations of penguins by species, island location, sex, and size between the years `r min(pull(penguins, year))` and `r max(pull(penguins, year))`. Measurement variables include bill length and depth, flipper length, and weight. The mean flipper length of penguins in the dataset is `r mean(na.omit(pull(penguins, flipper_length_mm)))` mm.
 
-The mean flipper length is `r mean(pull(penguins, flipper_length_mm))` mm.
+Creating a scatterplot of flipper length versus bill length:
+
+```{r}
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
+```
+
+Exporting the scatterplot to the project directory:
+
+```{r}
+ggsave("penguin_size_scatter_plot.pdf", height = 4, width = 6)
+```
+
